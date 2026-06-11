@@ -560,3 +560,6 @@ https://github.com/parksm060204/coursesdashpsm.git
 
 ## Prompt 106
 > 현장교육실습은 시간표를 표시, 표현 하지말아줘
+
+## Prompt 107
+> 모든요일1-9로 표기해줘

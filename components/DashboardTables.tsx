@@ -210,17 +210,21 @@ export default function DashboardTables({
                   </td>
                   <td className="py-3 px-4 font-medium text-gray-900 truncate max-w-xs" title={course['교과목명']}>
                     <div className="font-semibold text-gray-900">{course['교과목명'] || '-'}</div>
-                    {course['시간표(시간)'] && !(course['교과목명'] && course['교과목명'].includes('현장교육실습')) && (
+                    {course['교과목명'] && course['교과목명'].includes('현장교육실습') ? (
+                      <div className="text-xs text-indigo-600 font-semibold mt-0.5">
+                        모든요일1-9
+                      </div>
+                    ) : course['시간표(시간)'] ? (
                       <div className="text-xs text-gray-400 font-normal mt-0.5" title={course['시간표(시간)']}>
                         {course['시간표(시간)'].trim()}
                       </div>
-                    )}
+                    ) : null}
                   </td>
                   <td className="py-3 px-4">{course['담당교수'] || '-'}</td>
                   <td className="py-3 px-4 text-center">{course['학점'] || '-'}</td>
                   <td className="py-3 px-4 text-center text-xs text-gray-500 font-medium">
                     {course['교과목명'] && course['교과목명'].includes('현장교육실습') 
-                      ? '-' 
+                      ? '모든요일1-9' 
                       : formatClassPeriod(course['시간표(교시)'])}
                   </td>
                   <td className="py-3 px-4 text-center">
