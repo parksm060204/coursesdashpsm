@@ -15,6 +15,13 @@ export default function AIAnalyzer({ departmentName, courses }: AIAnalyzerProps)
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
+  // 학과(개설부서)가 변경되면 기존 AI 분석 결과 및 타이핑 상태 리셋
+  useEffect(() => {
+    setAnalysisResult('');
+    setTypedText('');
+    setError('');
+  }, [departmentName]);
+
   // 타이핑 애니메이션 효과
   useEffect(() => {
     if (!analysisResult) {
@@ -33,6 +40,7 @@ export default function AIAnalyzer({ departmentName, courses }: AIAnalyzerProps)
 
     return () => clearInterval(intervalId);
   }, [analysisResult]);
+
 
   const handleAnalyze = async () => {
     setIsAnalyzing(true);

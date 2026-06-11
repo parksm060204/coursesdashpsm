@@ -550,3 +550,6 @@
 깃허브에 코드베이스 업로드하기
 https://github.com/parksm060204/coursesdashpsm.git
 깃허브에 업로드해줘.
+
+## Prompt 104
+> 한번 ai분석을 돌리고 다른곳으로 가도 분석내용이 유지되서 굥양에서 일어일문설명이 보여 수정해줘
