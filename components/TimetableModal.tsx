@@ -17,9 +17,9 @@ interface TimetableModalProps {
   cart: Course[];
 }
 
-const DAYS = ['월', '화', '수', '목', '금'];
-const START_HOUR = 8; // 8 AM
-const END_HOUR = 19; // 7 PM
+const DAYS = ['월', '화', '수', '목', '금', '토'];
+const START_HOUR = 7; // 7 AM
+const END_HOUR = 22; // 10 PM
 const HOUR_HEIGHT = 50; // 1시간당 50px
 
 // 에브리타임 스타일 파스텔톤 팔레트
@@ -161,7 +161,7 @@ export default function TimetableModal({ isOpen, onClose, cart }: TimetableModal
         exit={{ opacity: 0 }}
       >
         <motion.div
-          className="bg-white shadow-2xl w-full h-full sm:h-auto sm:max-h-[90vh] sm:rounded-[2rem] sm:max-w-[420px] flex flex-col overflow-hidden relative"
+          className="bg-white shadow-2xl w-full h-full sm:h-auto sm:max-h-[90vh] sm:rounded-[2rem] sm:max-w-[760px] flex flex-col overflow-hidden relative"
           initial={{ scale: 0.95, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -183,69 +183,86 @@ export default function TimetableModal({ isOpen, onClose, cart }: TimetableModal
           </div>
 
           {/* Body - Timetable Grid */}
-          <div className="flex-1 overflow-y-auto bg-white px-4 pb-6">
-            <div className="border border-[#f0e6e6] rounded-xl overflow-hidden flex bg-white">
-              
-              {/* 시간축 (Y-axis) */}
-              <div className="w-[26px] border-r border-[#f0e6e6] flex-shrink-0 relative bg-white">
-                <div className="h-8 border-b border-[#f0e6e6]"></div>
-                {hours.map((hour, i) => (
-                  <div key={hour} className="relative border-b border-[#f0e6e6]" style={{ height: `${HOUR_HEIGHT}px` }}>
-                    <span className="absolute top-0 right-1 text-[11px] font-medium text-[#c62917]/70 mt-[2px]">
-                      {hour > 12 ? hour - 12 : hour}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* 요일축 (X-axis) 및 그리드 영역 */}
-              <div className="flex-1 grid grid-cols-5 relative">
-                {/* 헤더 */}
-                {DAYS.map((day, i) => (
-                  <div key={day} className={`h-8 border-b border-[#f0e6e6] flex items-center justify-center text-[12px] font-medium text-[#c62917]/80 bg-[#fdfbfb] ${i !== 0 ? 'border-l border-[#f0e6e6]' : ''}`}>
-                    {day}
-                  </div>
-                ))}
-
-                {/* 그리드 선 및 블록들 */}
-                <div className="col-span-5 relative bg-[#fdfbfb]" style={{ height: `${(END_HOUR - START_HOUR) * HOUR_HEIGHT}px` }}>
-                  {/* 가로선 (시간) */}
-                  {hours.map((_, i) => (
-                    <div key={`h-${i}`} className="absolute w-full border-t border-[#f0e6e6] pointer-events-none" style={{ top: `${(i+1) * HOUR_HEIGHT}px` }} />
+          <div className="flex-1 overflow-y-auto bg-white px-4 pb-6 scrollbar-thin">
+            <div className="overflow-x-auto pb-2 scrollbar-thin">
+              <div className="min-w-[600px] border border-[#f0e6e6] rounded-xl overflow-hidden flex bg-white relative">
+                
+                {/* 시간축 (Y-axis) */}
+                <div className="w-[32px] border-r border-[#f0e6e6] flex-shrink-0 relative bg-white">
+                  <div className="h-8 border-b border-[#f0e6e6] sticky top-0 bg-white z-20"></div>
+                  {hours.map((hour) => (
+                    <div key={hour} className="relative border-b border-[#f0e6e6]" style={{ height: `${HOUR_HEIGHT}px` }}>
+                      <span className="absolute top-0 right-1 text-[11px] font-medium text-[#c62917]/70 mt-[2px]">
+                        {hour > 12 ? hour - 12 : hour}
+                      </span>
+                    </div>
                   ))}
-                  
-                  {/* 세로 구분선 (요일) */}
-                  {DAYS.map((_, i) => (
-                    <div key={i} className="absolute h-full border-r border-[#f0e6e6] pointer-events-none" style={{ left: `${(100 / 5) * (i + 1)}%` }} />
+                </div>
+
+                {/* 요일축 (X-axis) 및 그리드 영역 */}
+                <div className="flex-1 grid relative" style={{ gridTemplateColumns: `repeat(${DAYS.length}, minmax(0, 1fr))` }}>
+                  {/* 헤더 */}
+                  {DAYS.map((day, i) => (
+                    <div 
+                      key={day} 
+                      className={`h-8 border-b border-[#f0e6e6] flex items-center justify-center text-[12px] font-medium text-[#c62917]/80 bg-[#fdfbfb] sticky top-0 z-20 ${i !== 0 ? 'border-l border-[#f0e6e6]' : ''}`}
+                    >
+                      {day}
+                    </div>
                   ))}
 
-                  {/* 강좌 블록 렌더링 */}
-                  {blocks.map(block => {
-                    const colIndex = DAYS.indexOf(block.day);
-                    if (colIndex === -1) return null;
+                  {/* 그리드 선 및 블록들 */}
+                  <div 
+                    className="relative bg-[#fdfbfb]" 
+                    style={{ 
+                      gridColumn: `span ${DAYS.length} / span ${DAYS.length}`, 
+                      height: `${(END_HOUR - START_HOUR) * HOUR_HEIGHT}px` 
+                    }}
+                  >
+                    {/* 가로선 (시간) */}
+                    {hours.map((_, i) => (
+                      <div key={`h-${i}`} className="absolute w-full border-t border-[#f0e6e6] pointer-events-none" style={{ top: `${(i+1) * HOUR_HEIGHT}px` }} />
+                    ))}
+                    
+                    {/* 세로 구분선 (요일) */}
+                    {DAYS.map((_, i) => (
+                      <div 
+                        key={i} 
+                        className="absolute h-full border-r border-[#f0e6e6] pointer-events-none" 
+                        style={{ left: `${(100 / DAYS.length) * (i + 1)}%` }} 
+                      />
+                    ))}
 
-                    return (
-                      <div
-                        key={block.id}
-                        className={`absolute left-0 p-[1px] transition-all hover:z-10`}
-                        style={{
-                          top: `${block.topPx}px`,
-                          height: `${block.heightPx}px`,
-                          left: `${(100 / 5) * colIndex}%`,
-                          width: `${100 / 5}%`
-                        }}
-                      >
-                        <div className={`h-full w-full p-1.5 overflow-hidden leading-[1.15] ${block.colorClass}`}>
-                          <div className="font-semibold text-[11px] break-keep">{block.title}</div>
-                          {block.room && (
-                            <div className="text-[10px] mt-0.5 opacity-90 break-keep">
-                              {block.room}
-                            </div>
-                          )}
+                    {/* 강좌 블록 렌더링 */}
+                    {blocks.map(block => {
+                      const colIndex = DAYS.indexOf(block.day);
+                      if (colIndex === -1) return null;
+
+                      const dayPercentage = 100 / DAYS.length;
+
+                      return (
+                        <div
+                          key={block.id}
+                          className="absolute left-0 p-[1px] transition-all hover:z-10"
+                          style={{
+                            top: `${block.topPx}px`,
+                            height: `${block.heightPx}px`,
+                            left: `${dayPercentage * colIndex}%`,
+                            width: `${dayPercentage}%`
+                          }}
+                        >
+                          <div className={`h-full w-full p-1.5 overflow-hidden leading-[1.15] rounded-md shadow-sm border border-black/5 ${block.colorClass}`}>
+                            <div className="font-semibold text-[11px] break-keep">{block.title}</div>
+                            {block.room && (
+                              <div className="text-[10px] mt-0.5 opacity-90 break-keep font-medium">
+                                {block.room}
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>

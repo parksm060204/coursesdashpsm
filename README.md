@@ -570,3 +570,23 @@ https://github.com/parksm060204/coursesdashpsm.git
 ## Prompt 109
 > 수고했어 gemini
 
+## Prompt 110
+> 아니 시간표가 야간 2-3이 추가된걸 반영을 못해 스크롤해서 내려볼 수 있도록해줘 그리고 시간표의 가로스케일을 좀 키우고 토요일도 추가해줘
+
+## Prompt 111
+> 시간표가 중복될 때에는 OO과 중복됩니다라고 표현해줘
+
+## Prompt 112
+> ## Error Type
+> Console TypeError
+> 
+> ## Error Message
+> Failed to fetch
+> 
+> 
+>     at Home.useEffect.loadCart (file://C:/Users/abcde/OneDrive/Desktop/2-1/vibecode/finalexampsm/.next/dev/static/chunks/_0dt5mjr._.js?id=%255Bproject%255D%252Fapp%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:277:47)
+>     at Home.useEffect (file://C:/Users/abcde/OneDrive/Desktop/2-1/vibecode/finalexampsm/.next/dev/static/chunks/_0dt5mjr._.js?id=%255Bproject%255D%252Fapp%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:291:17)
+
+## Prompt 113
+> 지금까지의 내용을 깃에 업로드해줘
+

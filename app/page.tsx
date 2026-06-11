@@ -15,6 +15,106 @@ import TimetableModal from '@/components/TimetableModal';
 import { UserIcon, LogOut, Calendar } from 'lucide-react';
 import toast from 'react-hot-toast';
 
+// 시간표 중복 검사를 위한 파싱 함수
+const parseCourseTime = (course: any) => {
+  const intervals: { day: string; start: number; end: number }[] = [];
+  const courseName = course['교과목명'] || '';
+  if (courseName.includes('현장교육실습')) return intervals;
+
+  const timeStr = course['시간표(시간)'];
+  if (!timeStr) return intervals;
+
+  let rawBlocks: string[] = [];
+  const bracketMatches = Array.from(timeStr.matchAll(/\[([^\]]+)\]/g)) as any[];
+  if (bracketMatches.length > 0) {
+    rawBlocks = bracketMatches.map(m => m[1]);
+  } else {
+    rawBlocks = timeStr.split(',').map((s: string) => s.trim()).filter((s: string) => s);
+  }
+
+  rawBlocks.forEach((blockStr: string) => {
+    let timeContent = '';
+    if (blockStr.includes(':')) {
+      const colonIdx = blockStr.indexOf(':');
+      timeContent = blockStr.substring(colonIdx + 1).trim();
+    } else {
+      timeContent = blockStr.trim();
+    }
+
+    const timeSegments = timeContent.split(',').map((s: string) => s.trim()).filter((s: string) => s);
+
+    timeSegments.forEach((segment: string) => {
+      const dayMatch = segment.match(/^([월화수목금토일]+)/);
+      if (!dayMatch) return;
+
+      const days = dayMatch[1].split('');
+      const timeRanges = (Array.from(segment.matchAll(/(\d{1,2}:\d{2})~(\d{1,2}:\d{2})/g)) as any[]).map(m => ({
+        start: m[1],
+        end: m[2]
+      }));
+
+      if (timeRanges.length === 0) return;
+
+      days.forEach((day: string) => {
+        const mergedRanges: { start: string; end: string }[] = [];
+        if (timeRanges.length > 0) {
+          let current = { ...timeRanges[0] };
+          for (let i = 1; i < timeRanges.length; i++) {
+            const [currEndH, currEndM] = current.end.split(':').map(Number);
+            const [nextStartH, nextStartM] = timeRanges[i].start.split(':').map(Number);
+            const currEndTotal = currEndH * 60 + currEndM;
+            const nextStartTotal = nextStartH * 60 + nextStartM;
+            if (nextStartTotal - currEndTotal <= 15) {
+              current.end = timeRanges[i].end;
+            } else {
+              mergedRanges.push(current);
+              current = { ...timeRanges[i] };
+            }
+          }
+          mergedRanges.push(current);
+        }
+
+        mergedRanges.forEach(({ start, end }) => {
+          const [startH, startM] = start.split(':').map(Number);
+          const [endH, endM] = end.split(':').map(Number);
+
+          const startTotalMin = startH * 60 + startM;
+          const endTotalMin = endH * 60 + endM;
+
+          intervals.push({
+            day,
+            start: startTotalMin,
+            end: endTotalMin
+          });
+        });
+      });
+    });
+  });
+
+  return intervals;
+};
+
+const findOverlappingCourse = (targetCourse: any, cartList: any[]) => {
+  const targetIntervals = parseCourseTime(targetCourse);
+  if (targetIntervals.length === 0) return null;
+
+  for (const cartCourse of cartList) {
+    const cartIntervals = parseCourseTime(cartCourse);
+    for (const tInt of targetIntervals) {
+      for (const cInt of cartIntervals) {
+        if (tInt.day === cInt.day) {
+          const overlapStart = Math.max(tInt.start, cInt.start);
+          const overlapEnd = Math.min(tInt.end, cInt.end);
+          if (overlapStart < overlapEnd) {
+            return cartCourse;
+          }
+        }
+      }
+    }
+  }
+  return null;
+};
+
 export default function Home() {
   const [courses, setCourses] = useState<any[]>([]);
   const [selectedDepartment, setSelectedDepartment] = useState<string>('대학전체');
@@ -33,6 +133,14 @@ export default function Home() {
     const courseSeq = String(course['순번']);
     const isExist = cart.some(c => String(c['순번']) === courseSeq);
     
+    if (!isExist) {
+      const overlapping = findOverlappingCourse(course, cart);
+      if (overlapping) {
+        toast.error(`${overlapping['교과목명']}과 중복됩니다.`);
+        return;
+      }
+    }
+
     // Optimistic UI 업데이트
     if (isExist) {
       setCart(prev => prev.filter(c => String(c['순번']) !== courseSeq));
