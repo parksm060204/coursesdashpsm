@@ -40,6 +40,9 @@ export default function TimetableModal({ isOpen, onClose, cart }: TimetableModal
     const result: any[] = [];
     
     cart.forEach((course, index) => {
+      const courseName = course['교과목명'] || '';
+      if (courseName.includes('현장교육실습')) return; // 현장교육실습 과목은 시간표에서 제외
+
       const timeStr = course['시간표(시간)'];
       if (!timeStr) return; // 시간표 정보가 없는 경우 패스
 

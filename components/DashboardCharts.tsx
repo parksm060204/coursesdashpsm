@@ -70,7 +70,8 @@ export default function DashboardCharts({ courses = [] }: DashboardChartsProps) 
       creditCountMap[creditLabel] = (creditCountMap[creditLabel] || 0) + 1;
 
       // 시간표 파싱
-      const timeStr = course['시간표(시간)'] || '';
+      const courseName = course['교과목명'] || '';
+      const timeStr = courseName.includes('현장교육실습') ? '' : (course['시간표(시간)'] || '');
       if (timeStr) {
         // 요일 카운트
         ['월', '화', '수', '목', '금', '토', '일'].forEach(day => {
