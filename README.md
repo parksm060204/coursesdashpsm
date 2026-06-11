@@ -47,11 +47,11 @@
 > 코드를 적지말고 내가 지시한 내용만 넣어
 
 ## Prompt 5
-> 환경변수를 만들고 수파베이스에 다음 키값을 넣어
-> NEXT_PUBLIC_SUPABASE_URL=https://ibiajmrvdeclunqmhxsw.supabase.co/rest/v1/
-> NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_xOaR_7x-LeZtLX6yvv38AA_U4YKHLqPsb_publishable_xOaR_7x-LeZtLX6yvv38AA_U4YKHLqP
-> NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaWFqbXJ2ZGVjbHVucW1oeHN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMzE0NjcsImV4cCI6MjA5NjcwNzQ2N30.FC0OSfLfEPlQun_AN85xvqLh2XvIVbPTlM8JEyHZFEI
-> SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaWFqbXJ2ZGVjbHVucW1oeHN3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MTEzMTQ2NywiZXhwIjoyMDk2NzA3NDY3fQ.ZUnSHy8nS0J1ZhH_teE_oFdWIdfujLfd70Sa2WYP3fU
+> 환경변수를 만들고 다음 키값을 넣어
+> NEXT_PUBLIC_SUPABASE_URL=(개인정보)
+> NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=(개인정보)
+> NEXT_PUBLIC_SUPABASE_ANON_KEY=(개인정보)
+> SUPABASE_SERVICE_ROLE_KEY=(개인정보)
 
 ## Prompt 6
 > 에이전트md 안읽었어? 왜 리드미에 기입이 안되? 에이전트md를 내가 원하는 방향에 맞게 수정해
@@ -195,7 +195,7 @@
 > 3. **요구사항 꼼꼼한 반영:** 기말고사 문제지의 필수 요건인 "인터랙티브 그래프로 제작 (그래프 위에 마우스를 올리면 구체적인 수치가 제시)"를 Tooltip 컴포넌트로 강제 지정하여 감점 요소를 완벽히 제거했습니다.
 
 ## Prompt 14
-> 제미나이 ai의 api야 기입해줘 [REDACTED_GEMINI_API_KEY]
+> 제미나이 ai의 api야 기입해줘 (개인정보)
 
 ## Prompt 15
 > 앞으로 테이블을 생성할 때와 액세스할 때 아래 사항을 항상 적용하도록 AGENTS.md에 반영하자.
@@ -505,7 +505,8 @@
 
 ## Prompt 90
 > 시간표선을 이상하게 잘랐어 시간표가 들어가는 칸이랑 시간을 맞춰 지금 시간 눈금이 있는 칸은 30분 칸이잖아
-## Prompt 91
+
+## Prompt 91
 > 시간표 디자인을 이런식으로 될 수 있도록 수정해줘
 
 ## Prompt 92
