@@ -577,16 +577,5 @@ https://github.com/parksm060204/coursesdashpsm.git
 > 시간표가 중복될 때에는 OO과 중복됩니다라고 표현해줘
 
 ## Prompt 112
-> ## Error Type
-> Console TypeError
-> 
-> ## Error Message
-> Failed to fetch
-> 
-> 
->     at Home.useEffect.loadCart (file://C:/Users/abcde/OneDrive/Desktop/2-1/vibecode/finalexampsm/.next/dev/static/chunks/_0dt5mjr._.js?id=%255Bproject%255D%252Fapp%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:277:47)
->     at Home.useEffect (file://C:/Users/abcde/OneDrive/Desktop/2-1/vibecode/finalexampsm/.next/dev/static/chunks/_0dt5mjr._.js?id=%255Bproject%255D%252Fapp%252Fpage.tsx+%255Bapp-client%255D+%2528ecmascript%2529:291:17)
-
-## Prompt 113
 > 지금까지의 내용을 깃에 업로드해줘
 
