@@ -1,26 +1,80 @@
+/* Pretendard dynamic subset font import */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css");
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAF8F4; /* Cozy warm cream ivory */
+  --foreground: #2E2722; /* Soft chocolate brown */
+  
+  /* Pretendard fallback chain */
+  --font-pretendard: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  /* Override default gray/neutral colors to cozy warm Sepia & Cream tones */
+  --color-gray-50: #FAF8F4;
+  --color-gray-100: #F1ECE3;
+  --color-gray-200: #E6DFD3;
+  --color-gray-300: #D6CBC0;
+  --color-gray-400: #BCAF9E;
+  --color-gray-500: #8E7F72;
+  --color-gray-600: #76695E;
+  --color-gray-700: #5D5248;
+  --color-gray-800: #463D36;
+  --color-gray-900: #2E2722;
+
+  /* Cozy magical purple palette */
+  --color-purple-50: #FAF7FC;
+  --color-purple-100: #F2EBF9;
+  --color-purple-200: #E5D5F3;
+  --color-purple-300: #D0B7EC;
+  --color-purple-400: #B590E2;
+  --color-purple-500: #986BD5;
+  --color-purple-600: #7E4BB9;
+  --color-purple-700: #6B3D9D;
+  --color-purple-800: #55317E;
+  --color-purple-900: #3A2058;
+
+  /* Soft pastel colors for alert/status badges */
+  --color-red-50: #FDF4F2;
+  --color-red-100: #FBE6E2;
+  --color-red-600: #D65A4B;
+
+  --color-yellow-50: #FFF9EB;
+  --color-yellow-100: #FDF0D5;
+  --color-yellow-600: #C4922B;
+
+  --color-blue-50: #F0F6FC;
+  --color-blue-100: #E1EDFB;
+  --color-blue-600: #4A89C8;
+
+  --color-green-50: #F1F8F6;
+  --color-green-100: #E2F1EC;
+  --color-green-600: #3D8B73;
+
+  /* Smooth ambient shadows for a magical paper/card feel */
+  --shadow-sm: 0 1px 2px 0 rgba(118, 105, 94, 0.04);
+  --shadow-md: 0 6px 16px -2px rgba(118, 105, 94, 0.08), 0 2px 6px -1px rgba(118, 105, 94, 0.04);
+  --shadow-lg: 0 12px 30px -5px rgba(118, 105, 94, 0.12), 0 8px 20px -6px rgba(118, 105, 94, 0.06);
+
+  --font-sans: var(--font-montserrat), var(--font-pretendard), sans-serif;
+  --font-mono: monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1C1815; /* Cozy night-time sepia dark */
+    --foreground: #EFECE7;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
+

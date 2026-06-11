@@ -1,36 +1,551 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 사용자 프롬프트 기록 (과제 제출용)
 
-## Getting Started
+지금까지 사용자가 에이전트에게 지시한 모든 프롬프트 내역입니다.
 
-First, run the development server:
+## Prompt 1
+> **[역할 및 목표]**
+> 너는 지금부터 제공된 UI 디자인(대시보드 이미지들)을 바탕으로 Next.js(App Router)와 Tailwind CSS를 활용해 대시보드의 **'좌측 사이드바(Sidebar)'** 컴포넌트를 개발할 거야.
+> **[데이터 구조 및 대학 순서]**
+> 제공된 '인천대학교대학순서.png'를 분석하여 사이드바 메뉴의 대분류(대학/학부) 순서를 아래와 같이 정확하게 구성해 줘.
+> 1. 대학전체 (이 메뉴는 '전체 대시보드' 기능을 함)
+> 2. 기초교육원
+> 3. 인문대학
+> 4. 자연과학대학
+> 5. 사회과학대학
+> 6. 글로벌정경대학
+> 7. 공과대학
+> 8. 정보기술대학
+> 9. 경영대학
+> 10. 예술체육대학
+> 11. 사범대학
+> 12. 도시과학대학
+> 13. 생명과학기술대학
+> 14. 융합자유전공대학
+> 15. 동북아국제통상물류학부
+> 16. 법학부
+> 
+> 각 대학(대분류) 산하의 '소속 학과(중분류)' 데이터는 Supabase에 올린 '종합강의시간표_1학기_전체.csv' 데이터에서 동적으로 추출하여 매핑하거나, 임시로 더미 데이터를 넣어 배열 형태로 관리할 수 있도록 `MENU_DATA` 상수를 만들어줘.
+> **[핵심 요구사항 (시험 제약조건 100% 준수)]**
+> 1. **모두 펼쳐진 상태:** 사이드 메뉴에서 대학(학부) 아래에 있는 **소속 학과들은 아코디언 메뉴처럼 닫혀있으면 안 되고, 기본적으로 렌더링될 때 '모두 펼쳐진(Expanded)' 상태로 고정**되게 구성해야 해. 접기/펴기 기능이 있더라도 기본값은 무조건 `true`(펼침)여야 해.
+> 
+> 2. **UI/UX:** 첨부된 '대시보드01.jpg', '대시보드06.jpg'의 사이드바를 참고해.
+> * 최상단 로고 영역에는 'Incheon National University'와 작은 글씨로 '2026-1 Course Dashboard'가 들어가야 해.
+> * 전체 대시보드를 보는 버튼(대학전체)은 보라색 계열 배경으로 활성화(Active) 상태가 잘 보이게 디자인해 줘.
+> * 각 소속 학과 아이템을 클릭했을 때 활성화 상태를 나타내는 부드러운 호버 및 클릭 효과를 Tailwind CSS로 구현해.
+> * 스크롤이 길어질 수 있으므로 사이드바 내부에 커스텀 스크롤바(가늘고 깔끔한 형태)가 적용되도록 CSS를 추가해 줘.
+> 
+> **[기능 요구사항]**
+> 사용자가 특정 학과를 클릭했을 때 상태를 관리할 수 있도록, 선택된 학과의 이름을 부모 컴포넌트(Page 레이아웃)로 전달하는 `onSelectDepartment` prop을 인터페이스에 추가해 줘. 일단 데이터 연동 전이니 UI 컴포넌트 뼈대와 하드코딩된 상태의 렌더링부터 완벽하게 작성해 줘.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Prompt 2
+> 에이전트 md를 확인해
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Prompt 3
+> 처음작성했던 코드를 리드미에 기입해
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Prompt 4
+> 코드를 적지말고 내가 지시한 내용만 넣어
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Prompt 5
+> 환경변수를 만들고 수파베이스에 다음 키값을 넣어
+> NEXT_PUBLIC_SUPABASE_URL=https://ibiajmrvdeclunqmhxsw.supabase.co/rest/v1/
+> NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_xOaR_7x-LeZtLX6yvv38AA_U4YKHLqPsb_publishable_xOaR_7x-LeZtLX6yvv38AA_U4YKHLqP
+> NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaWFqbXJ2ZGVjbHVucW1oeHN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMzE0NjcsImV4cCI6MjA5NjcwNzQ2N30.FC0OSfLfEPlQun_AN85xvqLh2XvIVbPTlM8JEyHZFEI
+> SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaWFqbXJ2ZGVjbHVucW1oeHN3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MTEzMTQ2NywiZXhwIjoyMDk2NzA3NDY3fQ.ZUnSHy8nS0J1ZhH_teE_oFdWIdfujLfd70Sa2WYP3fU
 
-## Learn More
+## Prompt 6
+> 에이전트md 안읽었어? 왜 리드미에 기입이 안되? 에이전트md를 내가 원하는 방향에 맞게 수정해
 
-To learn more about Next.js, take a look at the following resources:
+## Prompt 7
+> 사용자가 적는 에이전트에게 지시한 모든 프롬프트(지시사항)를 기록해야됨 과제제출 때 내가 작성한 프롬프트를 내야됨
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Prompt 8
+> 아니 에이전트 md에 이러한 로직을 적고 리드미에 프롬프트를 작성하라니까
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Prompt 9
+> 이제 완성된 사이드바의 우측에 들어갈 메인 대시보드 컴포넌트를 만들고, 그 최상단에 배치될 **4개의 핵심 지표(KPI) 요약 카드 컴포넌트(KPICards.tsx)**를 구현할 거야.
+> 
+> [데이터 구조 및 처리 기준]
+> 부모 컴포넌트로부터 전체 교과목 배열 데이터(courses)를 Props로 전달받는다고 가정하고 로직을 작성해 줘. Supabase에서 가져온 데이터(원본 CSV 기준) 컬럼명은 다음과 같아: 정원(capacity), 수강(enrolled), 원어강의(foreign_lang)
+> 💡 주의: DB에서 가져온 값이 문자열(String)일 수 있으므로, 반드시 숫자(Number 또는 parseInt)로 변환한 뒤에 계산해야 해!
+> 
+> [4대 KPI 계산 로직 - 이 수식을 정확히 따를 것]
+> 
+> 총 강좌수: courses.length (단위: 개)
+> 
+> 총 수강인원: 모든 강좌의 수강 컬럼 값의 총합 (단위: 명)
+> 
+> 평균 수강률 (%): (모든 강좌의 수강 총합 / 모든 강좌의 정원 총합) * 100.
+> (단, 분모인 정원 총합이 0일 경우의 예외 처리를 추가하고, 소수점 첫째 자리까지 표기할 것. 예: 85.4%)
+> 
+> 원어 강의 비율 (%): (원어강의 컬럼의 값이 'Y'인 강좌 수 / 전체 강좌수) * 100.
+> (소수점 첫째 자리까지 표기할 것. 예: 12.3%)
+> 
+> [UI/UX 및 스타일링 요구사항]
+> 
+> Tailwind CSS를 사용해서 4개의 카드가 한 줄에 고르게 배치되도록 반응형 그리드(grid-cols-1 sm:grid-cols-2 lg:grid-cols-4, gap-4 또는 gap-6)를 적용해 줘.
+> 
+> 첨부된 대시보드 이미지들의 스타일을 참고하여, 카드는 모서리가 둥글고(rounded-xl), 부드러운 그림자(shadow-sm 또는 shadow-md), 그리고 흰색 배경(bg-white 또는 다크모드 대응)을 가지도록 해.
+> 
+> 각 카드 내부에는 지표의 타이틀(작은 글씨, 회색조), 계산된 결괏값(크고 굵은 글씨), 그리고 우측 상단에 어울리는 Lucide-react 아이콘을 예쁘게 배치해 줘. (예: 총 강좌수 ➡️ BookOpen, 수강인원 ➡️ Users, 평균 수강률 ➡️ Percent, 원어 강의 비율 ➡️ Globe)
+> 
+> 데이터가 없는 로딩 상태일 때를 대비해 간단한 스켈레톤 UI 처리나 '데이터 불러오는 중...' 텍스트도 반영해 주면 좋겠어. 코드를 작성해 줘.
 
-## Deploy on Vercel
+## Prompt 10
+> 에이전트md에 내가 리드미에 저장하라고 하지 않아도 자동으로 저장되도록 적으라니까 이상한걸 적어놓냐 다시해
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Prompt 11
+> 필요한 파일
+> > lib/supabase/server.ts : 서버 컴포넌트용 supabase 클라이언트 (createClient)
+> > lib/supabase/client.ts : 클라이언트 컴포넌트용 supabase 클라이언트 (createClient)
+> 아래 패키지가 이미 설치됨
+> > @supabase/supabase-js
+> > @supabase/ssr
+> 환경변수에 supabase 키가 추가되어 있음
+> > NEXT_PUBLIC_SUPABASE_URL
+> > NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+> > NEXT_PUBLIC_SUPABASE_ANON_KEY
+> > SUPABASE_SERVICE_ROLE_KEY
+> 이외 화면이나 로직은 수정하지 말고, 필요한 초기화 코드만 작성
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Prompt 12
+> 리드미에 기록이 안되는데?
+
+## Prompt 13
+> Step 3(데이터 시각화 및 차트 구현)는 요구되는 그래프의 수가 많고 데이터 가공 로직이 복잡하므로, AI가 코드를 작성하다가 끊기거나 오류를 내지 않도록 **두 번에 나누어서(Part 1, Part 2) 프롬프트를 입력**하는 것이 핵심입니다.
+> 
+> Recharts 라이브러리의 특성과 CSV 데이터(특히 요일/시간 문자열)를 파싱하는 세부 로직을 AI에게 정확히 지시하는 구체화된 프롬프트입니다.
+> 
+> ---
+> 
+> ### 📋 [복사해서 AI 에디터에 입력하세요] - Part 1: 기본 카테고리 차트 4종
+> 
+> > **[목표]**
+> > 메인 대시보드 내에 "Recharts" 라이브러리를 활용하여 4개의 카테고리별 분석 차트를 구현할 거야. ("DashboardCharts.tsx" 컴포넌트로 분리해 줘)
+> > **[데이터 연산 및 차트 조건]**
+> > 부모로부터 "courses" (전체 강의 배열)를 전달받아 아래 4개의 차트 데이터를 가공해.
+> > **가장 중요한 조건:** 모든 차트에는 "<Tooltip />" 컴포넌트를 반드시 포함해서, **마우스를 올렸을 때(Hover) 구체적인 수치와 레이블이 명확하게 보이도록** 인터랙티브하게 구성해야 해. 반응형을 위해 반드시 "<ResponsiveContainer>"로 감싸줘.
+> > 1. **이수구분별 강좌수 (Bar Chart):** >    - X축: "이수구분" (예: 전공필수, 전공선택, 교양 등)
+> > * Y축: 해당 구분별 강좌의 개수 (Count)
+> > 
+> > 
+> > 2. **이수구분별 평균 수강인원 (Bar Chart):**
+> > * X축: "이수구분"
+> > * Y축: 해당 구분의 "수강" 컬럼 값들의 평균 (소수점 1자리에서 반올림)
+> > 
+> > 
+> > 3. **수업방법 유형 분포 (Pie/Donut Chart):**
+> > * "수업방법" 컬럼을 기준으로 그룹화하여 비율을 파이 차트로 시각화.
+> > 
+> > 
+> > 4. **학점 구성 비율 (Pie/Donut Chart):**
+> > * "학점" 컬럼 값(1학점, 2학점, 3학점 등)을 기준으로 그룹화하여 시각화.
+> > 
+> > 
+> > 
+> > 
+> > **[UI/UX]**
+> > 차트들은 2x2 그리드("grid-cols-1 lg:grid-cols-2", "gap-6") 형태로 배치하고, 각 차트는 모서리가 둥근 흰색 카드("bg-white rounded-xl shadow-sm p-4") 안에 예쁘게 들어가게 디자인해 줘.
+> 
+> ---
+> 
+> *(위 Part 1 코드가 정상적으로 작성되고 화면에 렌더링되는 것을 확인한 후, 아래 Part 2를 입력하세요.)*
+> 
+> ---
+> 
+> ### 📋 [복사해서 AI 에디터에 입력하세요] - Part 2: 시간/요일 차트 및 요약 테이블
+> 
+> > **[목표]**
+> > Part 1에 이어서, 복잡한 문자열 파싱이 필요한 **시간/요일 기반 차트 2종**과 **데이터 요약/상세 테이블 2종**을 추가로 구현할 거야.
+> > **[데이터 파싱 및 차트 조건 (Recharts)]**
+> > 데이터의 "시간표(시간)" 컬럼은 "[ZZ-200:수(09:00~09:50)(10:00~10:50)]" 같은 형태의 문자열로 되어 있어. 이를 정규식이나 문자열 검색으로 분석해야 해.
+> > 1. **요일별 수업 강좌 수 (Bar Chart):**
+> > * "시간표(시간)" 문자열에서 '월', '화', '수', '목', '금', '토', '일' 문자의 존재 여부를 파악해서 각 요일별 전체 강좌 수를 카운트해. X축은 요일, Y축은 강좌 수야.
+> > 
+> > 
+> > 2. **수업 시간별 강좌 수 (Line Chart):**
+> > * "시간표(시간)" 문자열에서 시작 시간(예: '09:00', '10:00', '13:00' 등 시간 단위)을 추출하여, 각 시간대별로 몇 개의 강좌가 시작하는지 카운트해 줘. X축은 시간(09:00~18:00 등), Y축은 강좌 수야.
+> > * *마찬가지로 마우스 호버 시 Tooltip이 꼭 표시되어야 해.*
+> > 
+> > 
+> > 
+> > 
+> > **[데이터 테이블 조건 (Tailwind CSS 활용)]**
+> > 대시보드 하단에 두 개의 표(Table)를 나란히 또는 위아래로 배치해 줘.
+> > 1. **대학(원)별 강좌 분석 요약 테이블:**
+> > * "대학(원)" 컬럼 기준으로 데이터를 그룹화해.
+> > * 컬럼 구성: [소속 대학명] | [총 강좌수] | [총 수강인원] | [평균 수강인원]
+> > * 스크롤이 가능하도록 최대 높이를 지정해 줘.
+> > 
+> > 
+> > 2. **상세 강좌 정보 데이터 테이블:**
+> > * 전체 "courses" 리스트를 보여주는 상세 테이블이야.
+> > * 컬럼 구성: [대학] | [학과] | [이수구분] | [교과목명] | [담당교수] | [학점] | [수강/정원]
+> > * 한 번에 10개~20개씩만 보이도록 **간단한 Pagination(페이지네이션)** 기능을 컴포넌트 내부에 구현해 줘.
+> > 
+> > 
+> > 
+> 
+> ---
+> 
+> ### 💡 Step 3 프롬프트가 효과적인 이유 (사용 팁)
+> 
+> 1. **정규식(문자열 파싱) 사전 안내:** "시간표(시간)" 컬럼의 데이터 형태("[ZZ-200:수(09:00~09:50)]")를 AI에게 프롬프트 상에서 미리 예시로 보여주었습니다. 이렇게 하지 않으면 AI가 단순 숫자로 착각하여 차트를 전혀 그리지 못하고 에러를 뿜어냅니다.
+> 2. **차트와 테이블의 명확한 분리:** 시각화 파트는 "Recharts"를 쓰고 테이블 파트는 HTML "table" 태그와 Tailwind를 써야 하므로, 하나의 프롬프트 안에서 이를 명확히 분리하여 지시했습니다.
+> 3. **요구사항 꼼꼼한 반영:** 기말고사 문제지의 필수 요건인 "인터랙티브 그래프로 제작 (그래프 위에 마우스를 올리면 구체적인 수치가 제시)"를 Tooltip 컴포넌트로 강제 지정하여 감점 요소를 완벽히 제거했습니다.
+
+## Prompt 14
+> 제미나이 ai의 api야 기입해줘 [REDACTED_GEMINI_API_KEY]
+
+## Prompt 15
+> 앞으로 테이블을 생성할 때와 액세스할 때 아래 사항을 항상 적용하도록 AGENTS.md에 반영하자.
+> > anon과 authenticated 역할(Role)이 PostgREST API를 통해 이 테이블에 접근할 수 있도록 명시적인 GRANT SQL 문(SELECT, INSERT, UPDATE, DELETE 등)을 반드시 포함해 줘.
+> > 또한, RLS(Row Level Security)를 활성화하고, 인증된 유저(authenticated)만 본인의 일기를 읽고 쓸 수 있도록 Policy도 함께 작성해 줘.
+
+## Prompt 16
+> app/page.tsx (또는 메인 레이아웃을 담당하는 클라이언트 컴포넌트)에서 작업을 진행해.
+> 
+> lib/supabase/client.ts에서 생성한 클라이언트를 가져와.
+> 
+> 다음 세 가지 State를 useState로 선언해:
+> 
+> courses: 빈 배열 (전체 데이터 저장용)
+> 
+> selectedDepartment: 초기값은 '대학전체' (문자열)
+> 
+> isLoading: 초기값은 true
+> 
+> useEffect를 사용해 컴포넌트가 처음 마운트될 때 Supabase의 종합강의시간표_1학기_전체 테이블에서 데이터를 모두(select('*')) 가져와서 courses State에 저장하고, isLoading을 false로 바꿔.
+> 
+> 에러 처리를 꼼꼼히 하고, 콘솔에 불러온 데이터의 길이(성공 시 2,313개)를 출력하게 해 줘.
+
+## Prompt 17
+> 상태 아래에 filteredCourses라는 변수를 선언해.
+> 
+> selectedDepartment가 '대학전체'일 경우: courses 원본을 그대로 반환.
+> 
+> 특정 학과가 선택되었을 경우: courses 배열 안에서 학과/소속 컬럼(CSV 기준 '개설대학', '소속', 또는 '학과' 등 해당하는 컬럼명 확인 필요)이 selectedDepartment와 일치하는 객체들만 filter()해서 반환.
+
+## Prompt 18
+> 데이터가 패칭되는 동안(isLoading === true)에는 화면 중앙에 예쁜 로딩 스피너와 함께 "강의 데이터를 불러오는 중입니다..."라는 텍스트가 표시되게 해.
+> 
+> 로딩이 완료되면 전체 레이아웃을 렌더링해.
+> 
+> 사이드바 컴포넌트에는 현재 선택된 학과를 알 수 있도록 selectedDepartment 값과 이를 변경할 수 있는 setSelectedDepartment 함수를 Props로 넘겨줘.
+> 
+> 대시보드 영역(KPI 카드, 차트, 테이블 등)에는 원본 데이터가 아닌 필터링이 완료된 filteredCourses 배열을 Props로 넘겨줘서, 사이드바 클릭 시 해당 학과 기준으로 대시보드 수치들이 즉시 재계산되어 렌더링되도록 만들어 줘.
+
+## Prompt 19
+> 이번엔 기말고사의 핵심 요구사항인 'AI 강의 분석' 기능과 '.md 파일 다운로드' 기능을 구현할 거야. Next.js App Router의 API Route를 활용해서 백엔드 통신을 구축하고, 메인 대시보드 화면에 UI를 추가해 줘.
+> 
+> [작업 1: 백엔드 API Route 구성 (app/api/analyze/route.ts)]
+> 
+> @google/generative-ai 패키지를 설치해. (명령어: npm install @google/generative-ai)
+> 
+> app/api/analyze/route.ts 파일을 생성하고 POST 핸들러를 작성해.
+> 
+> 환경 변수 GEMINI_API_KEY를 사용해서 Google Generative AI 클라이언트를 초기화해 줘.
+> 
+> (필수 조건) AI 모델은 반드시 **gemini-3.1-flash-lite**를 사용하도록 코드를 명시해 줘.
+> 
+> 프론트엔드에서 전달받은 departmentName과 summary (강좌수, 주요 이수구분, 주요 시간대 등) 데이터를 바탕으로, "해당 학과의 2026-1학기 강의 현황과 트렌드를 마크다운(Markdown) 포맷으로 전문적이고 친절하게 3~4문단으로 분석해 줘" 라는 프롬프트를 작성하여 Gemini에 요청을 보내고, 그 텍스트 응답을 클라이언트로 반환해.
+
+## Prompt 20
+> 대시보드 내에 'AI 강의 분석' 섹션을 만들고 "분석 시작" 버튼을 만들어.
+> 
+> 버튼을 누르면 부모 컴포넌트에서 받은 filteredCourses 배열을 프론트엔드에서 가볍게 1차 요약(총 강좌수 산출 등)한 뒤, selectedDepartment와 함께 /api/analyze로 POST 요청을 보내.
+> 
+> API 요청 중에는 반짝이는 아이콘과 함께 "AI가 강의 데이터를 분석 중입니다..."라는 로딩 애니메이션을 띄워 줘.
+> 
+> 응답을 받으면 react-markdown 같은 라이브러리를 쓰거나 단순 텍스트 렌더링을 통해 화면에 결과를 예쁘게 보여줘 (타이핑 애니메이션이 들어가면 더 좋아).
+
+## Prompt 21
+> 분석 결과가 화면에 나오면, 그 아래에 **"분석 결과 다운로드 (.md)"**라는 버튼을 생성해 줘.
+> 
+> 이 버튼을 클릭하면, AI가 응답한 마크다운 텍스트 원문을 Blob 객체(type: 'text/markdown')로 만들어서 브라우저에서 즉시 다운로드 되도록 로직을 작성해.
+> 
+> (매우 중요) 다운로드되는 파일의 이름은 무조건 'AI 강의 데이터 종합 분석 예시.md' 로 고정되게 설정해 줘.
+
+## Prompt 22
+> 대시보드의 우측 메인 영역(KPI 카드들이 있는 곳) 바로 위쪽에 브레드크럼 컴포넌트를 만들어 줘.
+> 
+> 상태값 selectedDepartment를 활용해서 경로를 표시해.
+> 
+> 값이 '대학전체'일 경우: 🏠 Home > 전체 대시보드
+> 
+> 특정 학과일 경우: 🏠 Home > [선택된 학과명]
+> 
+> Lucide-react의 Home 아이콘과 ChevronRight 아이콘을 활용해서 Tailwind CSS로 깔끔하고 세련되게(예: text-sm text-gray-500) 디자인해 줘.
+
+## Prompt 23
+> 지금까지 만든 내용을 수파베이스와 연결해줘
+
+## Prompt 24
+> 전체 화면 레이아웃의 가장 하단(메인 컨텐츠 아래)에 고정되거나 스크롤 끝에 나타나는 Footer 컴포넌트를 작성해 줘.
+> 
+> Footer의 좌측 또는 중앙에는 다음 3개의 외부 링크를 가로로 나란히(flex gap-4 등) 배치해 줘. 클릭 시 새 창(target="_blank" rel="noopener noreferrer")으로 열리게 해.
+> 
+> 인천대학교 홈페이지 (https://www.inu.ac.kr)
+> 
+> INU 포털 (https://portal.inu.ac.kr)
+> 
+> 이러닝 (https://cyber.inu.ac.kr)
+
+## Prompt 25
+> Footer의 우측(또는 하단)에는 제작자 이름을 넣어야 해. "제작자: [202500620 박성민]"이라고 쳐서 만들어줘
+
+## Prompt 26
+> Footer의 배경색은 대시보드와 어울리게 옅은 회색(bg-gray-50 또는 bg-white border-t)으로 처리하고 텍스트는 작게 디자인해 줘.
+
+## Prompt 27
+> 대시보드 하단의 '상세 강좌 정보 데이터 테이블' 상단에 '교과목명 검색' Input 바를 추가해. 사용자가 타이핑할 때마다 테이블에 보이는 데이터가 실시간으로 필터링 되도록 상태(searchTerm)를 연결해 줘.
+> 
+> 상세 테이블의 각 행(Row) 가장 좌측이나 우측에 '담기(⭐/추가)' 버튼을 만들어 줘.
+> 
+> 이 버튼을 누르면 해당 강좌가 별도의 cart 배열 State에 저장되게 해.
+> 
+> 메인 대시보드 우측 상단이나 사이드바 하단에 **'내 수강 바구니'**라는 작은 영역을 만들고, 내가 담은 강좌의 개수와 '총 담은 학점'의 합을 계산해서 예쁘게 보여줘. 이미 담은 강좌는 버튼이 '취소'로 바뀌게 토글 처리도 해줘.
+
+## Prompt 28
+> 아무데이터도 보이지 않아 수정해줘
+
+## Prompt 29
+> 테이블 네임은 courses야
+
+## Prompt 31
+> 그래픽이 깨져있어
+
+## Prompt 32
+> 그리고 데이터가 전부인스톨 되지 못한거같아 몇몇 부족한 과목들이 눈에 보여 원인을 찾고 수정해줘
+
+## Prompt 33
+> 장바구니칸과 담은 학점칸에 로그인을 만들고 로그인을 해야 저창이 뜰수 있도록해 로그인은 수파베이스에 저장하고 회원가입의 형태로만 아이디를 만들 수있도록해
+
+## Prompt 34
+> 이거는 왜 발생하는거야?
+
+## Prompt 35
+> 칸이 너무커 조금 자게만들어줘
+
+## Prompt 36
+> 여전히 이 현상이 발생하고 있어 수정해
+
+## Prompt 37
+> 메인 대시보드의 KPI 카드 4개와 Recharts 차트 6개 영역에 Framer Motion을 적용해서, 데이터 로딩이 끝나고 렌더링될 때 **순차적으로 밑에서 위로 부드럽게 나타나는 애니메이션(Staggered Fade-in-up)**을 구현해 줘.
+> 
+> 모든 KPI 카드와 차트 컨테이너 영역(div)에 Tailwind 클래스 hover:-translate-y-1 hover:shadow-lg transition-all duration-300를 추가해서, 마우스를 올렸을 때 카드가 부드럽게 떠오르는 인터랙션 디자인을 추가해 줘.
+
+## Prompt 38
+> [작업 1: Supabase 로그인 UI 및 상태 관리]
+> 대시보드 상단(Header)이나 사이드바 최상단에 '로그인' / '로그아웃' 버튼을 만들어 줘.
+> lib/supabase/client.ts를 사용해서 Supabase Auth 연동 코드를 작성해. 실제 회원가입/로그인이 가능하도록 간단한 이메일/비밀번호 입력 모달창(Login Modal)을 만들어 줘. (테스트용이므로 UI는 심플하게 구성해)
+> 최상위 컴포넌트에 user (로그인된 유저 정보) 상태를 관리하고, useEffect로 supabase.auth.getSession()을 호출해 새로고침해도 로그인 상태가 유지되게 해.
+> 
+> [작업 2: 장바구니 권한 제어]
+> 기존에 만든 상세 강좌 정보 테이블의 '담기(⭐)' 버튼은 로그인을 한 유저만 누를 수 있어야 해.
+> 로그인을 하지 않은 상태에서 '담기' 버튼을 누르면, react-hot-toast나 sonner 같은 알림 라이브러리를 사용해서 **"로그인 후 이용할 수 있습니다."**라는 예쁜 토스트 메시지를 띄워 줘.
+> 내 수강 바구니 영역도 로그아웃 상태일 때는 "로그인하여 시간표를 구성해보세요"라는 안내 문구만 보이게 처리해 줘.
+> 이내용으로 로그인시슽템을 업그레이드해
+
+## Prompt 39
+> [browser] The width(-1) and height(-1) of chart should be greater than 0... 아까부터 이 문장이 터미널에 뜨는게 해결이 안되고 있어 수정해줘
+
+## Prompt 40
+> 지금 수파베이스를 잘 이용하고 있는거 맞지? 로딩이 조금 느린데 조금 빠르게 할 수 있는 방법이 없을까?
+
+## Prompt 41
+> 로그인 창이 너무크고 사족이 너무 많아 그냥 깔끔하게 로그인 3글자만 있는 버튼으로 바꿔줘
+
+## Prompt 42
+> 이 장바구니 담기도 로그인 했을때만 보이도록 해
+
+## Prompt 43
+> [browser] The width(-1) and height(-1) of chart should be greater than 0... 이게 뜨는 원인이 무엇이며 해결은 어떻게 하는지 알려줘
+
+## Prompt 44
+> 위 자료의 값이 null인데 값을 채워넣어줘
+
+## Prompt 45
+> 총강좌수가 2455개가 맞아? 교안에는 2455개가 아니던데
+
+## Prompt 46
+> 이수구분별 평균수강인원 그래프 디자인을 2번쨰 사진처럼 가로형 바로 해줘
+
+## Prompt 47
+> 얘도 가로형으로 바꿔줘
+
+## Prompt 48
+> 수업방법에서 미상은 대면수업으로 바꿔줘
+
+## Prompt 49
+> 장바구니 상태인 cart 배열을 순회하면서, 각 교과목의 시간표(시간) 컬럼 문자열을 파싱해. (데이터 예시: [ZZ-200:수(09:00~09:50)(10:00~10:50)] 또는 월(10:00~11:50))
+> 정규식(Regex)을 작성해서 '요일'과 '시작 시간', '종료 시간'을 정확히 추출하는 유틸리티 함수를 만들어 줘.
+> 추출한 데이터를 바탕으로 앞서 만든 시간표 그리드뷰의 알맞은 위치(칸)에 교과목명과 장소(시간표 컬럼 앞부분)가 적힌 색상 블록(div)을 렌더링해.
+> 각 과목 블록은 랜덤한 파스텔톤 배경색(bg-blue-100, bg-green-100 등)을 가지게 해서 예쁘게 꾸며 줘.
+
+## Prompt 50
+> 일어일문 중어중문은 자료가 없음
+
+## Prompt 51
+> 무역도 비어있어
+
+## Prompt 52
+> 전자도 없어
+
+## Prompt 53
+> 스마트 물류 공학도 추가해
+
+## Prompt 54
+> 융합자유전공도 없어
+
+## Prompt 55
+> 체육학과는 존재하지 않는거 아님?
+
+## Prompt 56
+> 산경공 같은데를 보면 원가회계같이 의미없는 데이터들도 있어 수정해줘
+
+## Prompt 57
+> 이런경우가 더 있는지 찾아봐
+
+## Prompt 58
+> 기초 교육원도 분류해줘
+
+## Prompt 59
+> 텍스트가 깨져있어
+
+## Prompt 60
+> 폰트를 Pretendard + Montserrat 조합으로 바꾸고
+
+## Prompt 61
+> OO과 dashboard에서 dashborad라는 단어를 빼줘
+
+## Prompt 62
+> 더 추가해야하는 과가 있는지 찾아보고 데이터에 반영이 안되는 정보가 있는지 찾아봐줘
+
+## Prompt 63
+> 이제 사이트에 표시되는 정보중에 중복되는 정보가 있는지 찾아봐줘
+
+## Prompt 64
+> 반영이 안되는 정보는 이제 없는지 찾아봐
+
+## Prompt 65
+> https://inu-courses-dashboard.vercel.app/ 이거랑 과목에서 차이가 나는데 어떤 문제가 있는거야???
+
+## Prompt 66
+> 전자공은 하나로 합쳐줘
+
+## Prompt 67
+> 전자공은 다시 롤백해줘
+
+## Prompt 68
+> 이제 모든 사항에 대해 문제가 없는지 점검해주고 개선할 사항이 있는지 점검해줘
+
+## Prompt 69
+> 회원가입은 이메일 말고 아이디를 입려하게하고 비밀번호 확인하는 칸을 만들어 그리고 보안문자를 추가할 수 있는지 확인해줘
+
+## Prompt 70
+> 보안문자를 입력할 때 문자의 간격을 랜덤으로 하고, x자의 위치도 여러개로 해줘
+
+## Prompt 71
+> 텍스트의 가로 간격을 좀 넓게해줘
+
+## Prompt 72
+> 로그인 정보가 수파베이스에 잘저장되는지 확인해
+
+## Prompt 73
+> id를 적는 란에 텍스트가 너무 하얘서 안보여 검은색으로 바꿔줘
+
+## Prompt 74
+> 보안문자가 일치하지 않거나 비밀번호가 틀렸거나 아이디가 중복되서 수정해야되는 경우에는 보안문자를 새걸로 바꿔
+
+## Prompt 75
+> 비번란도 텍스트 색깔을 검은색으로 해줘
+
+## Prompt 76
+> 이건 왜 뜨는거야? (Email address "psm0204@inu-courses.com" is invalid 에러 관련)
+
+## Prompt 77
+> 전반적으로 내용을 점검해줘
+
+## Prompt 78
+> 이거 고쳐 로그인이 안되잖아 (아이디 유효성 검사 오류)
+
+## Prompt 79
+> 에이전트md와 리드미를 읽고, 지금 회원가입이 안되는 현상이 발생하는데 수정해줘
+
+## Prompt 80
+> 고쳐 (TimetableModal duplicate key 에러)
+
+## Prompt 81
+> 시간표가 잘 반영이 안되는거 같아 수정해줘
+
+## Prompt 82
+> 시간표 y축 눈금 값이 표랑 매칭이 안되 수정해줘
+
+## Prompt 83
+> 3시간동안 수업하는 경우에는 시간표를 붙여서 출력해 붙어있는 경우
+
+## Prompt 84
+> 에브리타임의 시간표 디자인을 참고하여 만들어줘 특히 **y축부분과 시간표시**하는 걸 참고해
+
+## Prompt 85
+> 30분 단위 말고 1시간 단위로만 해
+
+## Prompt 86
+> 계정에 장바구니에 담은 목록이 저장되도록 해줘
+
+## Prompt 87
+> sql을 실행했고 잘 저장되는지 체크해
+
+## Prompt 88
+> 장바구니 저장에 실패했다고 뜨는데 수정해줄 수 있어?
+
+## Prompt 89
+> 장바구니 저장을 눌렀는데 여전히 에러가 떠 (console.error: {})
+
+## Prompt 90
+> 시간표선을 이상하게 잘랐어 시간표가 들어가는 칸이랑 시간을 맞춰 지금 시간 눈금이 있는 칸은 30분 칸이잖아
+## Prompt 91
+> 시간표 디자인을 이런식으로 될 수 있도록 수정해줘
+
+## Prompt 92
+> check agent md
+
+## Prompt 93
+> 시간에 시간이 선 아래로 내려가도록 해줘
+
+## Prompt 94
+> 시간표에서 저 3개 버튼은 없애줘
+
+## Prompt 95
+> 그리고 npm run dev를 새로 로드해도 로그인이 유지되는데 해당상태가 4시간만 유지되도록
+
+## Prompt 96
+> 리드미에 안보여 어디쓰고 있어?
+
+
+## Prompt 97
+> 사이드 메뉴 중 대학(학부) 또는 학과를 누르고 ‘AI 강의 분석’을 누르면 해당 대학(학부) 또는 학과의 강의 현황을 분석
+
+## Prompt 98
+> https://inu-courses-dashboard.vercel.app/
+와 비교해서 어떤점이 보완하면 좋을지 혹은 완벽한 상위호환인지 분석해
+
+## Prompt 99
+> 현재까지의 내용중 쓸모없거나 더이상 기능하지 않는 내용은 삭제해줘
+
+## Prompt 100
+> 전반적 디자인톤을 동화틱하고 눈이 편안하도록 해줘
+
+## Prompt 101
+> 원어 강의 비율이랑 평균 수강률은 정상적으로 개산 되고 있는거 맞지?
+
+## Prompt 102
+> 현재 csv데이터에 없지만 사이드바의 메뉴에 포함된 내용이 있는지 확인해
+
+## Prompt 103
+> 현재 연결된 깃허브 계정 정보를 알려줘.
+깃허브 저장소 만들기
+깃허브에 코드베이스 업로드하기
+https://github.com/parksm060204/coursesdashpsm.git
+깃허브에 업로드해줘.
