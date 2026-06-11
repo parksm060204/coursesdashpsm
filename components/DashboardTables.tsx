@@ -49,7 +49,19 @@ export default function DashboardTables({
 
     courses.forEach(c => {
       // 대학(원) 컬럼 우선, 없으면 대학 컬럼
-      const college = c['대학(원)'] || c['대학'] || '미상';
+      let college = c['대학(원)'] || c['대학'] || '미상';
+      const trimmed = college.trim();
+
+      // 단과대구분없음 정제 (법학부, 동북아국제통상물류학부 등으로 대표 전공에 맞춤 매핑)
+      if (trimmed === '단과대구분없음' || trimmed === '단과대구분없음(법학)') {
+        const dept = c['소속'] || c['학과(부)'] || '';
+        if (dept.includes('동북아') || dept.includes('IBE') || dept.includes('통상') || dept.includes('물류')) {
+          college = '동북아국제통상물류학부';
+        } else if (dept.includes('법학')) {
+          college = '법학부';
+        }
+      }
+
       const enrolled = parseInt(String(c['수강']), 10) || 0;
       const capacity = parseInt(String(c['정원']), 10) || 0;
 
@@ -175,7 +187,21 @@ export default function DashboardTables({
             <tbody className="divide-y divide-gray-100 text-sm text-gray-700">
               {currentData.length > 0 ? currentData.map((course, idx) => (
                 <tr key={idx} className="hover:bg-purple-50 transition-colors">
-                  <td className="py-3 px-4">{course['대학(원)'] || course['대학'] || '-'}</td>
+                  <td className="py-3 px-4">
+                    {(() => {
+                      const college = course['대학(원)'] || course['대학'] || '-';
+                      const trimmed = college.trim();
+                      if (trimmed === '단과대구분없음' || trimmed === '단과대구분없음(법학)') {
+                        const dept = course['소속'] || course['학과(부)'] || '';
+                        if (dept.includes('동북아') || dept.includes('IBE') || dept.includes('통상') || dept.includes('물류')) {
+                          return '동북아국제통상물류학부';
+                        } else if (dept.includes('법학')) {
+                          return '법학부';
+                        }
+                      }
+                      return college;
+                    })()}
+                  </td>
                   <td className="py-3 px-4 text-gray-500">{course['학과'] || '-'}</td>
                   <td className="py-3 px-4">
                     <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium">

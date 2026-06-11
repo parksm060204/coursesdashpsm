@@ -243,6 +243,14 @@ export default function Home() {
           }
         }
 
+        // 법학부 필터링 시, 소속은 법학부이지만 개설 학과가 다른 학과(예: 글로벌정경대학 행정학과)인 경우 제외
+        if (targetDept === '법학부') {
+          const dept = course['학과(부)'] || course['학과'] || '';
+          if (dept && dept !== '법학부' && dept !== '법학과') {
+            return false;
+          }
+        }
+
         // 산업경영공학과(공과대학) 필터링 시, 소속은 산경공이지만 경영대학(경영학부) 과목인 원가회계, 회계감사 등은 제외
         if (targetDept === '산업경영공학과') {
           const college = course['대학(원)'] || course['대학'] || '';
@@ -250,6 +258,7 @@ export default function Home() {
             return false;
           }
         }
+
 
         return (
           course['개설대학'] === targetDept ||
