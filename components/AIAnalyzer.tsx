@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Bot, FileDown, Loader2, Sparkles } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
@@ -14,13 +14,28 @@ export default function AIAnalyzer({ departmentName, courses }: AIAnalyzerProps)
   const [typedText, setTypedText] = useState<string>('');
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+  const abortControllerRef = useRef<AbortController | null>(null);
 
-  // 학과(개설부서)가 변경되면 기존 AI 분석 결과 및 타이핑 상태 리셋
+  // 학과(개설부서)가 변경되면 기존 AI 분석 결과 리셋 및 실행 중인 분석 요청 중단
   useEffect(() => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
     setAnalysisResult('');
     setTypedText('');
     setError('');
+    setIsAnalyzing(false);
   }, [departmentName]);
+
+  // 컴포넌트 언마운트 시 진행 중인 요청 취소
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
 
   // 타이핑 애니메이션 효과
   useEffect(() => {
@@ -43,6 +58,14 @@ export default function AIAnalyzer({ departmentName, courses }: AIAnalyzerProps)
 
 
   const handleAnalyze = async () => {
+    // 이전 요청이 진행 중이면 먼저 취소
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     setIsAnalyzing(true);
     setError('');
     setAnalysisResult('');
@@ -70,7 +93,8 @@ export default function AIAnalyzer({ departmentName, courses }: AIAnalyzerProps)
       const res = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ departmentName, summary })
+        body: JSON.stringify({ departmentName, summary }),
+        signal: controller.signal
       });
 
       const data = await res.json();
@@ -81,9 +105,16 @@ export default function AIAnalyzer({ departmentName, courses }: AIAnalyzerProps)
 
       setAnalysisResult(data.result);
     } catch (err: any) {
+      if (err.name === 'AbortError') {
+        console.log('AI 분석 요청이 취소되었습니다.');
+        return;
+      }
       setError(err.message);
     } finally {
-      setIsAnalyzing(false);
+      if (abortControllerRef.current === controller) {
+        setIsAnalyzing(false);
+        abortControllerRef.current = null;
+      }
     }
   };
 
