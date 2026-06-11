@@ -567,3 +567,6 @@ https://github.com/parksm060204/coursesdashpsm.git
 ## Prompt 108
 > AI분석중에 다른곳으로 이동하면 그냥 분석을 중도에 중단시켜줘
 
+## Prompt 109
+> 수고했어 gemini
+
